@@ -8,7 +8,7 @@
     "dev": "npm start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "npm run build && git add . && git commit -m deploy && git checkout master && git merge develop && git push && git checkout develop"
+    "deploy": "npm run build && git add . && git commit -m deploy && git checkout master && git merge develop && git push && git checkout develop && echo 'successfully deployed to https://zoffyzhang.github.io/blog/'"
   },
   "dependencies": {
     "autoprefixer": "7.1.6",
