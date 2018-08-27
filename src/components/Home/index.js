@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import axiosConfig from '../../api/axiosConfig'
+import './index.styl'
 
 class Home extends Component {
     constructor(props) {
