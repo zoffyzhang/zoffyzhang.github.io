@@ -8,10 +8,12 @@
     "dev": "npm start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "npm run build && git add . && git commit -m deploy && git checkout master && git merge develop && git push && git checkout develop && echo 'successfully deployed to https://zoffyzhang.github.io/blog/'"
+    "m2h": "node scripts/markdownToHtml.js",
+    "deploy": "npm run m2h && npm run build && git add . && git commit -m deploy && git checkout master && git merge develop && git push && git checkout develop && echo 'successfully deployed to https://zoffyzhang.github.io/blog/'"
   },
   "dependencies": {
     "autoprefixer": "7.1.6",
+    "axios": "^0.18.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -35,6 +37,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "normalize.css": "^8.0.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
@@ -96,6 +99,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "marked": "^0.5.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
   }

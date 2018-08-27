@@ -4,25 +4,25 @@
 
 <!-- TOC -->
 
-- [计算机科学中的约书亚树](#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E7%BA%A6%E4%B9%A6%E4%BA%9A%E6%A0%91)
-    - [mount 命令](#mount-%E5%91%BD%E4%BB%A4)
-    - [Buffer & Cache](#buffer--cache)
-    - [**域名层级**](#%E5%9F%9F%E5%90%8D%E5%B1%82%E7%BA%A7)
-    - [\*符号](#%E7%AC%A6%E5%8F%B7)
-    - [栈的三个意思](#%E6%A0%88%E7%9A%84%E4%B8%89%E4%B8%AA%E6%84%8F%E6%80%9D)
+- [计算机科学中的约书亚树](#计算机科学中的约书亚树)
+    - [mount命令](#mount命令)
+    - [Buffer与Cache](#buffer与cache)
+    - [域名层级](#域名层级)
+    - [\*符号](#\符号)
+    - [栈的三个意思](#栈的三个意思)
     - [REPL](#repl)
-    - [Linux 命令参数 a~z 的共识含义(需要补充)](#linux-%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0-az-%E7%9A%84%E5%85%B1%E8%AF%86%E5%90%AB%E4%B9%89%E9%9C%80%E8%A6%81%E8%A1%A5%E5%85%85)
-    - [pipeline & compose](#pipeline--compose)
-    - [Modem & Gateway & Router](#modem--gateway--router)
-    - [FormData & Payload](#formdata--payload)
+    - [Linux命令参数a-z的共识含义](#linux命令参数a-z的共识含义)
+    - [pipeline与compose](#pipeline与compose)
+    - [Modem与Gateway与Router](#modem与gateway与router)
+    - [FormData与Payload](#formdata与payload)
 
 <!-- /TOC -->
 
-## mount 命令
+## mount命令
 
 挂载，我刚接触到这个命令的时候非常懵，完全不明白为什要用这个名词，直到我偶然在知乎上找到了答案 —— [Linux 中常用的命令都是哪些单词的缩写？ - 蓬岸 Dr.Quest 的回答 - 知乎](https://www.zhihu.com/question/49073893/answer/114986798)，这篇回答图文并茂地描述了 mount 是一个手工添加硬盘的动作，因为老式计算机设备都比较庞大，所以就叫成了 mount，既挂载。
 
-## Buffer & Cache
+## Buffer与Cache
 
 I/O 硬件是计算机速度最慢的元器件之一，为了提高 I/O 效率，人们引入了 Buffer 和 Cache 这两个概念。
 
@@ -37,7 +37,7 @@ I/O 硬件是计算机速度最慢的元器件之一，为了提高 I/O 效率�
 所以，最准确的翻译是把 Buffer 翻译成“缓存”，把 Cache 翻译成“快取”。
 
 
-## **域名层级**
+## 域名层级
 
 我是看了《CSAPP》这本书后才发现，我们中文网络上一些搜索排名靠前的文章，对域名层级的解释跟国际上的不一样！那些被大量阅读的博客文章，不仅会蹦出「三级域名」这样臆造的名词，甚至对「二级域名」的解释也是错的。
 
@@ -72,9 +72,9 @@ I/O 硬件是计算机速度最慢的元器件之一，为了提高 I/O 效率�
 
 既 Read-Eval-Print Loop，指交互式的编程环境，在该环境中输入命令即可得到结果，最常见的 REPL 就是 Windows cmd。由于 REPL 在编程上拥有无与伦比的便捷性，所以大部分编程语言、操作系统、数据库等都提供了 REPL。
 
-## Linux 命令参数 a~z 的共识含义(需要补充)
+## Linux命令参数a-z的共识含义
 
-## pipeline & compose
+## pipeline与compose
 
 这两个术语其实没什么关联，但它们的核心思想是一样的。
 
@@ -90,7 +90,7 @@ compose 里的三个参数是三个函数，以从右至左的顺序调用，并
 
 `f(g(h()))`
 
-## Modem & Gateway & Router
+## Modem与Gateway与Router
 
 Modem：调制解调器，俗称「猫」。你向互联网发送或接收信息时，信息传输方式都是通过波的形式(无论是电话线、光纤还是无线基站，都是以电磁波或光波的形式)，既模拟信号。而计算机能理解的信号是数字信号，所以就需要一个硬件去做模拟信号与数字信息的相互转换工作，这就是 Modem。
 
@@ -115,7 +115,7 @@ Router：路由器，主要任务是把信息中转到目标网络。路由器�
 8.  当你的笔记本、手机等连接 WIFI 时，你买的无线路由器又充当了笔记本、手机的 Default Gateway，并且笔记本、手机又被分配了无线路由器下的内网 IP
 9.  这时候用笔记本 ping 一个公网 IP，这个请求就会从笔记本发送到无线路由器(Default Gateway)，然后发送(到交换机，再发送)到上一级 Default Gateway(一楼的路由器)，经过 Modem 转换成模拟信号，通过光缆到达 ISP 的 Modem，转换成数字信号给 ISP 的 Router，然后又经过多个 Modem 和 Router 中转，最终传送到目标IP。
 
-## FormData & Payload
+## FormData与Payload
 
 我在浏览器的 HTTP 调试界面中注意到了这两个词，可以对比一下。
 
