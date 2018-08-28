@@ -1,0 +1,44 @@
+/* ========================================================================== */
+/* from https://github.com/sofish/typo.css/blob/master/typo.css */
+/* ========================================================================== */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizelegibility;
+    font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif,
+        WenQuanYi Micro Hei, sans-serif !important;
+    color: #333;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* 代码片断 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 100;
+    color: #000;
+    line-height: 1.35;
+}
+pre,
+code,
+pre tt {
+    font-family: Courier, 'Courier New', monospace !important;
+}
+pre {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 1em 1.5em;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+}
+/* 一致化 horizontal rule */
+hr {
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    margin-bottom: 0.8em;
+    height: 10px;
+}
