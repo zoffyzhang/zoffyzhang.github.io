@@ -10,15 +10,16 @@ class Home extends Component {
 
         axios({
             ...axiosConfig,
-            url: 'https://raw.githubusercontent.com/zoffyzhang/zoffyzhang.github.io/master/blog/index.html',
+            url: 'https://raw.githubusercontent.com/zoffyzhang/zoffyzhang.github.io/master/articles/The%20Joshua%20Trees%20In%20Computer%20Science.html',
             responseType: 'text',
         }).then(res => {
-            this.setState({ article: res.data })
+            // this.setState({ article: res.data })
+            this.refs.articleContent.innerHTML = res.data;
         })
     }
 
     render() {
-        return <div>{window.marked(this.state.article)}</div>
+        return <div ref='articleContent'></div>
     }
 }
 

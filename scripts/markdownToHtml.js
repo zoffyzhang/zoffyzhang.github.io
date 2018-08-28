@@ -76,5 +76,5 @@ async function compileMarkdown2Html(files) {
     console.log(`${chalk.green('All markdown files have been compiled to html files 🎉')}\n`)
 }
 
-var filePathes = ['../articles/The Joshua Trees In Computer Science.md']
+var filePathes = ['../articles/The-Joshua-Trees-In-Computer-Science.md']
 compileMarkdown2Html(filePathes)

@@ -11,7 +11,7 @@
         "m2h": "node scripts/markdownToHtml.js",
         "deploy": "npm run m2h && npm run build && git add . && git commit -m deploy && git checkout master && git merge develop && git push && npm run echo && git checkout develop",
 
-        "echo": "echo \"\n\n==============================================\n\n successfully deployed to https://zoffyzhang.github.io/blog/ \n\n=============================================="
+        "echo": "echo \"\n\n==============================================\n\n successfully deployed to https://zoffyzhang.github.io/blog/ \n\n==============================================\n\""
     },
     "dependencies": {
         "autoprefixer": "7.1.6",
