@@ -1,0 +1,110 @@
+<h1 id="计算机科学中的约书亚树">计算机科学中的约书亚树</h1>
+<a href="#table-of-contents">Table of Contents<a>
+<blockquote>
+<p>术语在理解计算机知识时是很重要的。就如同《写给大家看的设计书》里讲的一样，当你知道一种树的名字叫约书亚树后，你才会发现约书亚树无处不在，但由于你之前并不知道树的名字，所以你从未留意过它们。本文尝试介绍一些计算机相关的概念，包括术语、文化等，希望帮助你发现更多的约书亚树。</p>
+</blockquote>
+<p>&lt;!-- TOC --&gt;
+
+</p>
+<ul>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E7%BA%A6%E4%B9%A6%E4%BA%9A%E6%A0%91">计算机科学中的约书亚树</a><ul>
+<li><a href="#mount%E5%91%BD%E4%BB%A4">mount命令</a></li>
+<li><a href="#buffer%E4%B8%8Ecache">Buffer与Cache</a></li>
+<li><a href="#%E5%9F%9F%E5%90%8D%E5%B1%82%E7%BA%A7">域名层级</a></li>
+<li><a href="#%5C%E7%AC%A6%E5%8F%B7">*符号</a></li>
+<li><a href="#%E6%A0%88%E7%9A%84%E4%B8%89%E4%B8%AA%E6%84%8F%E6%80%9D">栈的三个意思</a></li>
+<li><a href="#repl">REPL</a></li>
+<li><a href="#linux%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0a-z%E7%9A%84%E5%85%B1%E8%AF%86%E5%90%AB%E4%B9%89">Linux命令参数a-z的共识含义</a></li>
+<li><a href="#pipeline%E4%B8%8Ecompose">pipeline与compose</a></li>
+<li><a href="#modem%E4%B8%8Egateway%E4%B8%8Erouter">Modem与Gateway与Router</a></li>
+<li><a href="#formdata%E4%B8%8Epayload">FormData与Payload</a></li>
+</ul>
+</li>
+</ul>
+<p>&lt;!-- /TOC --&gt;
+
+</p>
+<h2 id="mount命令">mount命令</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>挂载，我刚接触到这个命令的时候非常懵，完全不明白为什要用这个名词，直到我偶然在知乎上找到了答案 —— <a href="https://www.zhihu.com/question/49073893/answer/114986798">Linux 中常用的命令都是哪些单词的缩写？ - 蓬岸 Dr.Quest 的回答 - 知乎</a>，这篇回答图文并茂地描述了 mount 是一个手工添加硬盘的动作，因为老式计算机设备都比较庞大，所以就叫成了 mount，既挂载。</p>
+<h2 id="buffer与cache">Buffer与Cache</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>I/O 硬件是计算机速度最慢的元器件之一，为了提高 I/O 效率，人们引入了 Buffer 和 Cache 这两个概念。</p>
+<blockquote>
+<p>简单说，Buffer 的核心作用是用来缓冲，缓和冲击。比如你每秒要写 100 次硬盘，对系统冲击很大，浪费了大量时间在忙着处理开始写和结束写这两件事嘛。用个 Buffer 暂存起来，变成每 10 秒写一次硬盘，对系统的冲击就很小，写入效率高了，日子过得爽了。极大缓和了冲击。</p>
+<p>Cache 的核心作用是加快取用的速度。比如你一个很复杂的计算做完了，下次还要用结果，就把结果放手边一个好拿的地方存着，下次不用再算了。加快了数据取用的速度。</p>
+<p>所以，如果你注意关心过存储系统的话，你会发现硬盘的读写缓冲/缓存名称是不一样的，叫 write-buffer 和 read-cache。很明显地说出了两者的区别。</p>
+<p>摘抄自 <a href="http://zhihu.com/question/26190832/answer/146259979">Cache 和 Buffer 都是缓存，主要区别是什么？ - 沈万马的回答 - 知乎</a></p>
+</blockquote>
+<p>所以，最准确的翻译是把 Buffer 翻译成“缓存”，把 Cache 翻译成“快取”。</p>
+<h2 id="域名层级">域名层级</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>我是看了《CSAPP》这本书后才发现，我们中文网络上一些搜索排名靠前的文章，对域名层级的解释跟国际上的不一样！那些被大量阅读的博客文章，不仅会蹦出「三级域名」这样臆造的名词，甚至对「二级域名」的解释也是错的。</p>
+<p>正确的域名层级应该是：</p>
+<p><code>主机名.二级域名.顶级域名.根域名</code></p>
+<p>举个例子，对于<a href="https://en.wikipedia.org/wiki/Domain_name">域名</a>&quot;cdn.mdn.mozilla.net&quot; 来说，其<a href="https://en.wikipedia.org/wiki/Fully_qualified_domain_name">完整域名</a>是&quot;cdn.mdn.mozilla.net.&quot;</p>
+<p>这个完整域名从右往左解析，依次是：</p>
+<ul>
+<li>根域名：是一个空字符串，在&quot;net.&quot;后面。由于根域名只有一个，给它命名其实是多余的事情，于是根域名就成了一个空字符串。ps.现代 DNS 可以不需要这个冗余的信息了。</li>
+<li>顶级域名：既&quot;net&quot;这个部分。</li>
+<li>次级域名：既&quot;mozilla&quot;这个部分。</li>
+<li>主机名：既&quot;cdn.mdn&quot;这个部分，也就是&quot;.mozilla&quot;前面的部分。当你买下一个域名的使用权后，你得到的是&quot;次级域名.顶级域名&quot;，主机名可以由你自己配置，普遍的做法是配置成&quot;www&quot;。当网站的业务种类变复杂后，就会增加更多的主机名，让人们更容易区分这个域名下的不同业务，比如前面说到的&quot;cdn.mdn&quot;。</li>
+</ul>
+<p>域名层级跟 DNS 的解析过程紧密相关，但这个过程又需要大量文字才能写完，已经超出了本篇文章的范围。所以最后决定只是单纯地解释术语的意思，涉及 DNS 解析的过程我推荐一篇看过的最详细的文章：<a href="https://www.jianshu.com/p/4394aaf97492">DNS 服务原理详解</a>。</p>
+<h2 id="*符号">*符号</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>* 符号在正则表达式上表示其前面的模式重复 0 或多次，例如正则表达式 <code>/ab*/</code>可匹配字符串<code>a</code> 与<code>abbb</code>。</p>
+<p>* 符号在操作系统上通常含义是通配符(wildcard character)，直接表示任意字符重复 0 或多次，例如<code>ab*</code>可匹配字符串<code>ab</code>与<code>abc123</code>。</p>
+<h2 id="栈的三个意思">栈的三个意思</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p><a href="http://www.ruanyifeng.com/blog/2013/11/stack.html">见此链接的文章</a></p>
+<p>附注. 阮老师的解释跟《CSAPP》中虚拟存储器这章里的解释不一样。</p>
+<h2 id="repl">REPL</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>既 Read-Eval-Print Loop，指交互式的编程环境，在该环境中输入命令即可得到结果，最常见的 REPL 就是 Windows cmd。由于 REPL 在编程上拥有无与伦比的便捷性，所以大部分编程语言、操作系统、数据库等都提供了 REPL。</p>
+<h2 id="linux命令参数a-z的共识含义">Linux命令参数a-z的共识含义</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<h2 id="pipeline与compose">pipeline与compose</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>这两个术语其实没什么关联，但它们的核心思想是一样的。</p>
+<p>pipeline 是 unix 系统非常成功的发明之一，以&quot;|&quot;符号连接左右两个命令，并将左边命令的输出作为给右边命令的输入。例如：</p>
+<p><code>command1 | command2 | command3</code></p>
+<p>compose 则是函数式编程中的概念，以类似以下的方式出现：</p>
+<p><code>compose( function3, function2, function1)</code></p>
+<p>compose 里的三个参数是三个函数，以从右至左的顺序调用，并且右边函数的输出会作为左边函数的输入。这个顺序看起来很反人类，但其实跟数学函数的计算顺序是一样的：</p>
+<p><code>f(g(h()))</code></p>
+<h2 id="modem与gateway与router">Modem与Gateway与Router</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>Modem：调制解调器，俗称「猫」。你向互联网发送或接收信息时，信息传输方式都是通过波的形式(无论是电话线、光纤还是无线基站，都是以电磁波或光波的形式)，既模拟信号。而计算机能理解的信号是数字信号，所以就需要一个硬件去做模拟信号与数字信息的相互转换工作，这就是 Modem。</p>
+<p>「调制」和「解调」是两个来自电磁波广播技术的名词，如果你想用电磁波发射信号，那么必须用高频电磁波，因为低频波传播距离很短。低频波转换成高频波的过程就称为「调制」，高频波转成低频波则称为「解调」。</p>
+<p>Gateway：网关，指有网关功能的硬件设备，可以管理物理不同网络间的流量。Gateway 其实是一个抽象名词，就像「细菌」是个抽象名词，「葡萄球菌」才是具体的实物。Gateway 可能是路由器、防火墙、服务器或其他设备，只要一个设备连接了两个不同的网络(网络 IP 不同)，就可以把这个设备叫做网关。</p>
+<p>Router：路由器，主要任务是把信息中转到目标网络。路由器组成结构类似于 PC，有处理器、内存、闪存以及至少两个网卡接口(连接两个网络)，里面还安装有特定的操作系统。但是，我们要区分一下家用路由器和 ISP 的路由器(ISP 既 Internet Service Provider 互联网服务提供商，简单地说，你的网费支付给哪家公司，哪家公司就是你的 ISP)：</p>
+<ul>
+<li>家用路由器除了路由功能还通常充当默认网关(Default Gateway)，并且提供 NAT 和 DHCP 功能，家用路由器的 routing table 只记录了子网的 IP，所以跟公网 IP 通信时，会将信息发送到家用路由器的 Default Gateway 上(既 ISP 的路由器)。</li>
+<li>ISP 的路由器体型比较大，接口和插线都非常多，价格据说要上百万人民币。这些路由器通常没有 Default Gateway，它们的 routing table 有众多 ISP 路由器的地址，查询 routing table 得知下一跳的最短路径，接着不断中转，直到有一个 ISP 路由器查看 routing table 后知道目标IP就跟自己连着，所以就把信息发送到目标IP了，此时 ISP 路由器的工作也就完成了。ISP路由的过程其实类似于快递运转的过程，你去一个快递收发站点发一个包裹(家用路由器)，快递被送到集散中心(ISP路由器)，ISP路由器是不需要知道这个包裹发到哪条街道那个小区的，它只需要知道包裹目的地的集散中心，根据这个集散中心的转运路线图(routing table)确定下一个集散中心地点，接下来就是下一个集散中心重复这一过程了。</li>
+</ul>
+<p>举一个我自己总结的例子：如果你有一些租房经历，你可能遇到过整栋楼的宽带服务都被指定了服务商的情况，这种情况下的技术模型我猜测如下：</p>
+<ol>
+<li>通常服务商在一楼放了一个 Modem 和一个 Router</li>
+<li>Modem 接收光缆信号，转换成数字信号输出到 Router</li>
+<li>这个 Router 充当整栋楼的 Default Gateway，拥有公网 IP(坑爹的情况下，这里也有可能是个内网 IP)</li>
+<li>然后可能还要再接几个交换机(Switch)，分出足够多的网线给楼里的每个租户都提供一个网线插头，其中一个插头拉到了你的租房内</li>
+<li>你打电话让工作人员来帮你调通，然后交钱，这时网线插到笔记本，输入连接账号密码，你就可以上网了</li>
+<li>但是现在只有一个插头，你希望笔记本、手机、ipad、手表都可以联网，所以你就买了一个无线路由器用来发射 WIFI 信号</li>
+<li>将插头插到无线路由器上，这个无线路由器就被分配了这栋楼的 Default Gateway 下的一个内网 IP</li>
+<li>当你的笔记本、手机等连接 WIFI 时，你买的无线路由器又充当了笔记本、手机的 Default Gateway，并且笔记本、手机又被分配了无线路由器下的内网 IP</li>
+<li>这时候用笔记本 ping 一个公网 IP，这个请求就会从笔记本发送到无线路由器(Default Gateway)，然后发送(到交换机，再发送)到上一级 Default Gateway(一楼的路由器)，经过 Modem 转换成模拟信号，通过光缆到达 ISP 的 Modem，转换成数字信号给 ISP 的 Router，然后又经过多个 Modem 和 Router 中转，最终传送到目标IP。</li>
+</ol>
+<h2 id="formdata与payload">FormData与Payload</h2>
+<a href="#table-of-contents">Table of Contents<a>
+<p>我在浏览器的 HTTP 调试界面中注意到了这两个词，可以对比一下。</p>
+<p>FormData：当 HTTP 请求的 Content-Type 为 application/x-www-form-urlencoded 时，Chrome 和 Firefox 都会把 HTTP request body 称为 FormData。例如下面这个 HTTP 请求的实体部分：</p>
+<pre><code>POST /some-path HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+foo=bar&amp;name=John</code></pre><p>Payload：载荷，指载具除本体之外的负载，可以指货物、乘客、重量。经常能在航天相关的语境中看到这个词，甚至「轰炸机投递炸弹」可以叫做&#39;deliver payload&#39;。</p>
+<p>当 Content-Type 为 application/json 时，Chrome 把 HTTP request body 称为 payload；Firefox 则把 HTTP response body 称为 payload。</p>
+<pre><code>POST /some-path HTTP/1.1
+Content-Type: application/json
+
+{ &quot;foo&quot; : &quot;bar&quot;, &quot;name&quot; : &quot;John&quot; }</code></pre><p>payload 是一个比 formData 更形象的词汇，想象一下，当一个 HTTP 请求发出时，一枚火箭携带你的请求参数飞到服务器，服务器再让另一枚火箭携带数据回到你的浏览器，这样把参数叫做 payload 是不是非常形象？之所以没有统一用 payload，应该是早期的浏览器开发者没有想到这个词吧，命名真的很难。</p>
