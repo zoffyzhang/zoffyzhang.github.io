@@ -35,7 +35,8 @@ marked.setOptions({
 // =============================================================================
 
 // markdown编译成html
-async function compileMarkdown2Html(absDir, allFiles) {
+async function compileMarkdown2Html(absDir) {
+    const allFiles = fs.readdirSync(absDir, 'utf8')
     for (let i = 0, len = allFiles.length; i < len; i++) {
         let curFile = allFiles[i]
         if (/\.md$/.test(curFile)) {
@@ -68,8 +69,9 @@ async function compileMarkdown2Html(absDir, allFiles) {
 }
 
 // 生成包含文章信息的json，用于blog列表页
-function generateArticleMetaInfo(absDir, allFiles, writeFilePath) {
+function generateArticleMetaInfo(absDir, writeFilePath) {
     const allArticleInfo = []
+    const allFiles = fs.readdirSync(absDir, 'utf8')
 
     allFiles.forEach(filename => {
         if (/\.html$/.test(filename)) {
@@ -96,17 +98,17 @@ function generateArticleMetaInfo(absDir, allFiles, writeFilePath) {
 // 文章所在目录
 const dir = '../articles'
 // 文章meta信息输出路径
-const articleInfoPath = '../src/blogConfig/articleInfo.json'
+const articleInfoPath = '../src/blogData/articleInfo.json'
 
 const absDir = path.resolve(__dirname, dir)
-const allFiles = fs.readdirSync(absDir, 'utf8')
+
 const writeFilePath = path.resolve(__dirname, articleInfoPath)
 
 // =============================================================================
 // start
 // =============================================================================
-;(async (absDir, allFiles, writeFilePath) => {
-    await compileMarkdown2Html(absDir, allFiles)
-    await generateArticleMetaInfo(absDir, allFiles, writeFilePath)
+;(async (absDir, writeFilePath) => {
+    await compileMarkdown2Html(absDir)
+    await generateArticleMetaInfo(absDir, writeFilePath)
     console.log(`${chalk.green('MarkdownToHtml.js done!')} 🎉\n`)
-})(absDir, allFiles, writeFilePath)
+})(absDir, writeFilePath)

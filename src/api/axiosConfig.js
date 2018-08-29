@@ -1,6 +1,6 @@
 export default {
     // `url` is the server URL that will be used for the request
-    url: '/blog',
+    url: '',
 
     // `method` is the request method to be used when making the request
     method: 'get', // default
@@ -8,7 +8,7 @@ export default {
     // `baseURL` will be prepended to `url` unless `url` is absolute.
     // It can be convenient to set `baseURL` for an instance of axios to pass relative URLs
     // to methods of that instance.
-    baseURL: 'https://some-domain.com/api/',
+    baseURL: 'https://raw.githubusercontent.com/zoffyzhang/zoffyzhang.github.io/master/articles/',
 
     // `transformRequest` allows changes to the request data before it is sent to the server
     // This is only applicable for request methods 'PUT', 'POST', and 'PATCH'

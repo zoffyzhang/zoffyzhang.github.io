@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import axiosConfig from '../../api/axiosConfig'
 import './index.styl'
-const articleInfo = require('../../blogConfig/articleInfo.json')
-const blogConfig = require('../../blogConfig/blog.json')
+const articleInfo = require('../../blogData/articleInfo.json')
 
 class Home extends Component {
     constructor(props) {
         super(props)
 
         axios({
-            ...axiosConfig,
-            url: blogConfig.articleBaseUrl + articleInfo[0].file,
+            url: articleInfo[0].file,
             responseType: 'text',
         }).then(res => {
             this.refs.articleContent.innerHTML = res.data
@@ -19,7 +16,7 @@ class Home extends Component {
     }
 
     render() {
-        return <div ref="articleContent" />
+        return <div ref="articleContent">正在加载文章</div>
     }
 }
 
