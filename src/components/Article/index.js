@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './index.styl'
+import Loading from '../Loading/index'
 const articleInfo = require('../../blogData/articleInfo.json')
 
 class Home extends Component {
@@ -8,6 +9,7 @@ class Home extends Component {
         super(props)
 
         axios({
+            ...axios.defaults,
             url: articleInfo[0].file,
             responseType: 'text',
         }).then(res => {
@@ -16,7 +18,11 @@ class Home extends Component {
     }
 
     render() {
-        return <div ref="articleContent">正在加载文章</div>
+        return (
+            <div ref="articleContent">
+                <Loading />
+            </div>
+        )
     }
 }
 

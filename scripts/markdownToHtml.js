@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const marked = require('marked')
 const chalk = require('chalk')
+const signale = require('signale')
 
 // =============================================================================
 // hack into marked
@@ -59,13 +60,13 @@ async function compileMarkdown2Html(absDir) {
                     if (err) {
                         reject(err)
                     }
-                    console.log(`${chalk.yellow(writeFilePath)} has generated.`)
+                    console.log(chalk.yellow('generated: ' + writeFilePath))
                     resolve()
                 })
             })
         }
     }
-    console.log(chalk.green('All markdown files have been compiled to html files'))
+    signale.success(chalk.green('All markdown files have been compiled to html files'))
 }
 
 // 生成包含文章信息的json，用于blog列表页
@@ -88,7 +89,7 @@ function generateArticleMetaInfo(absDir, writeFilePath) {
 
     const json = JSON.stringify(allArticleInfo)
     fs.writeFileSync(writeFilePath, json, 'utf8')
-    console.log(`${chalk.yellow(writeFilePath)} has generated.\n`)
+    console.log(chalk.yellow('generated: ' + writeFilePath))
 }
 
 // =============================================================================
@@ -101,7 +102,6 @@ const dir = '../articles'
 const articleInfoPath = '../src/blogData/articleInfo.json'
 
 const absDir = path.resolve(__dirname, dir)
-
 const writeFilePath = path.resolve(__dirname, articleInfoPath)
 
 // =============================================================================
@@ -110,5 +110,5 @@ const writeFilePath = path.resolve(__dirname, articleInfoPath)
 ;(async (absDir, writeFilePath) => {
     await compileMarkdown2Html(absDir)
     await generateArticleMetaInfo(absDir, writeFilePath)
-    console.log(`${chalk.green('MarkdownToHtml.js done!')} 🎉\n`)
+    signale.success(`${chalk.green('MarkdownToHtml.js done!')} 🎉\n`)
 })(absDir, writeFilePath)

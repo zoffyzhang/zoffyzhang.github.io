@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import './index.styl'
 
 class Sidebar extends Component {
-    render () {
+    render() {
         return (
-            <div>
-
+            <div className={`sidebar ${this.props.className}`}>
+                <div className="sidebar-holder" />
+                <div className="sidebar-content">sadsad</div>
             </div>
         )
     }
