@@ -3,10 +3,11 @@ import './index.styl'
 
 class Sidebar extends Component {
     render() {
+        const logo = require('../../imgs/logo/full-logo.svg')
+
         return (
-            <div className={`sidebar ${this.props.className}`}>
-                <div className="sidebar-holder" />
-                <div className="sidebar-content">sadsad</div>
+            <div className="sidebar">
+                <img src={logo} className="sidebar-logo" alt="logo" />
             </div>
         )
     }

@@ -19,7 +19,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div ref="articleContent">
+            <div ref="articleContent" className="article">
                 <Loading />
             </div>
         )
