@@ -8,6 +8,9 @@ const articleInfo = require('../../blogData/articleInfo.json')
 class Article extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            isArticleRender: false,
+        }
 
         const urlFile = this.props.match.url
         this.currentArticle = articleInfo.find(item => new RegExp(item.file).test(urlFile))
@@ -21,6 +24,9 @@ class Article extends Component {
             // 删除<!-- TOC -->标识符
             let html = res.data.replace(/&lt;!--\s\/?TOC\s--&gt;/gm, '')
             this.refs.articleContent.innerHTML = html
+            this.setState({
+                isArticleRender: true,
+            })
             setTimeout(() => {
                 this.addPostDate()
             }, 0)
@@ -41,8 +47,18 @@ class Article extends Component {
 
     render() {
         return (
-            <div ref="articleContent" className="article">
-                <Loading />
+            <div>
+                <div ref="articleContent" className="article">
+                    <Loading />
+                </div>
+
+                {this.state.isArticleRender && (
+                    <div className="license">
+                        本站内容遵循「
+                        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh">署名 4.0 国际 (CC BY 4.0)</a>
+                        」协议
+                    </div>
+                )}
             </div>
         )
     }

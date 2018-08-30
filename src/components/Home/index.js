@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import './index.styl'
 import { Link } from 'react-router-dom'
+import './index.styl'
 
 let articleInfo = require('../../blogData/articleInfo.json')
 
