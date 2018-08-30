@@ -75,12 +75,12 @@ function generateArticleMetaInfo(absDir, writeFilePath) {
     const allFiles = fs.readdirSync(absDir, 'utf8')
 
     allFiles.forEach(filename => {
-        if (/\.html$/.test(filename)) {
+        if (/\.md$/.test(filename)) {
             let absPath = path.join(absDir, filename)
             let stat = fs.statSync(absPath)
 
             allArticleInfo.push({
-                file: filename,
+                file: filename.replace(/\.md$/,'.html'),
                 cdate: new Date(stat.ctime).toLocaleDateString(),
                 ctime: new Date(stat.ctime).toLocaleTimeString(),
             })
