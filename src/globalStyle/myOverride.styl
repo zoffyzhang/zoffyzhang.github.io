@@ -1,6 +1,11 @@
 @import './variables.styl';
 
-body{
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body {
     max-width: 100%;
     padding: 0;
 }
@@ -15,11 +20,10 @@ a {
     }
 
     text-decoration: none;
-    color: inherit;
 }
 
 li > a {
-    color: #2c8898;
+    color: $active-color;
 }
 blockquote {
     font-style: normal;
