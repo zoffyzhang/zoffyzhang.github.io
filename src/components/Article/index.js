@@ -38,9 +38,7 @@ class Article extends Component {
         if (el) {
             el.insertAdjacentHTML(
                 'afterend',
-                `<div class="post-datetime"> 发布于：${this.currentArticle.file.cdate} ${
-                    this.currentArticle.file.ctime
-                } </div>`
+                `<div class="post-datetime"> 发布于：${this.currentArticle.cdate} ${this.currentArticle.ctime} </div>`
             )
         }
     }
