@@ -15,7 +15,7 @@ class Home extends Component {
             const title = item.file.replace(/\.html$/, '')
             return (
                 <li key={title}>
-                    <Link to={'/article/' + item.file}>
+                    <Link to={'/blog/article/' + item.file}>
                         <span>{title}</span>
                         <span>{item.cdate}</span>
                     </Link>

@@ -13,14 +13,11 @@ class Sidebar extends Component {
                     <img src={myLogo} className="sidebar-logo" alt="logo" />
                     <ul>
                         <li>
-                            <Link to="/">首页</Link>
+                            <Link to="/blog">首页</Link>
                         </li>
                         {/*
                             <li>
-                                <Link to="/">实验室</Link>
-                            </li>
-                            <li>
-                                <Link to="/">关于我</Link>
+                                <Link to="/blog>关于我</Link>
                             </li>
                         */}
                         <li>
