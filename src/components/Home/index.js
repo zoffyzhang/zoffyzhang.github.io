@@ -7,8 +7,8 @@ let articleInfo = require('../../blogData/articleInfo.json')
 class Home extends Component {
     render() {
         articleInfo.sort((a, b) => {
-            const aTime = new Date(a.cdate + ' ' + a.ctime).getTime()
-            const bTime = new Date(b.cdate + ' ' + b.ctime).getTime()
+            const aTime = new Date(a.birthDate + ' ' + a.birthTime).getTime()
+            const bTime = new Date(b.birthDate + ' ' + b.birthTime).getTime()
             return bTime - aTime
         })
         const titleList = articleInfo.map(item => {
@@ -17,7 +17,7 @@ class Home extends Component {
                 <li key={title}>
                     <Link to={'/blog/article/' + item.file}>
                         <span>{title}</span>
-                        <span>{item.cdate}</span>
+                        <span>{item.birthDate}</span>
                     </Link>
                 </li>
             )

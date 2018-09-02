@@ -7,9 +7,9 @@ const signale = require('signale')
 // =============================================================================
 // hack into marked
 // =============================================================================
-let toc = []
 let renderer = (function() {
     let renderer = new marked.Renderer()
+    let toc = []
     renderer.heading = function(text, level, raw) {
         let anchor = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-')
         toc.push({
@@ -75,14 +75,14 @@ function generateArticleMetaInfo(absDir, writeFilePath) {
     const allFiles = fs.readdirSync(absDir, 'utf8')
 
     allFiles.forEach(filename => {
-        if (/\.md$/.test(filename)) {
+        if (/\.md$/i.test(filename)) {
             let absPath = path.join(absDir, filename)
             let stat = fs.statSync(absPath)
-
+            let datetime = new Date(stat.birthtime)
             allArticleInfo.push({
-                file: filename.replace(/\.md$/,'.html'),
-                cdate: new Date(stat.ctime).toLocaleDateString(),
-                ctime: new Date(stat.ctime).toLocaleTimeString(),
+                file: filename.replace(/\.md$/, '.html'),
+                birthDate: getDate(datetime),
+                birthTime: getTime(datetime),
             })
         }
     })
@@ -90,6 +90,19 @@ function generateArticleMetaInfo(absDir, writeFilePath) {
     const json = JSON.stringify(allArticleInfo)
     fs.writeFileSync(writeFilePath, json, 'utf8')
     console.log(chalk.yellow('generated: ' + writeFilePath))
+}
+
+// 获取格式化日期
+function getDate(date) {
+    var ret = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`
+    return ret
+}
+// 获取格式化时间
+function getTime(date) {
+    var ret = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${(
+        '0' + date.getSeconds()
+    ).slice(-2)}`
+    return ret
 }
 
 // =============================================================================
