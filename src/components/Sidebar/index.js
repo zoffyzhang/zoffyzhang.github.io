@@ -21,7 +21,7 @@ class Sidebar extends Component {
                             </li>
                         */}
                         <li>
-                            <a href="http://192.168.199.167:3000/resume.pdf" download="res.pdf">
+                            <a href="https://github.com/zoffyzhang/zoffyzhang.github.io/raw/master/blog/%E5%BC%A0%E5%80%AC%E8%BE%89%2BWeb%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%2B2%E5%B9%B4%E7%BB%8F%E9%AA%8C.pdf" download="张倬辉+Web前端工程师+2年经验.pdf">
                                 简历下载
                             </a>
                         </li>
