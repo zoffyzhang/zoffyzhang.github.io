@@ -16,12 +16,8 @@ class Article extends Component {
         this.currentArticle = articleInfo.find(item => new RegExp(item.file).test(urlFile))
 
         // 请求github raw html文件
-        axios({
-            ...axios.defaults,
-            url: this.currentArticle.file,
-            responseType: 'text',
-        }).then(res => {
-            // 删除<!-- TOC -->标识符
+        axios.get(this.currentArticle.file, { baseURL: axios.defaults.baseURL }).then(res => {
+            // 删除TOC标志
             let html = res.data.replace(/&lt;!--\s\/?TOC\s--&gt;/gm, '')
             this.refs.articleContent.innerHTML = html
             this.setState({
@@ -38,7 +34,9 @@ class Article extends Component {
         if (el) {
             el.insertAdjacentHTML(
                 'afterend',
-                `<div class="post-datetime"> 发布于：${this.currentArticle.birthDate} ${this.currentArticle.birthTime} </div>`
+                `<div class="post-datetime"> 发布于：${this.currentArticle.birthDate} ${
+                    this.currentArticle.birthTime
+                } </div>`
             )
         }
     }
