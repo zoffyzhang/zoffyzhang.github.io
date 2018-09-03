@@ -46,10 +46,31 @@
                 margin-bottom: 10px;
                 padding: 10px;
                 padding-top: 0;
-                border-bottom: 2px solid transparent;
+                position: relative;
 
-                &:hover {
-                    border-bottom-color: #fff;
+                &::after {
+                    content: '';
+                    height: 2px;
+                    width: 0;
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    background: #fff;
+                }
+
+                @keyframes bottom {
+                    from {
+                        width: 0;
+                        left: 50%;
+                    }
+                    to {
+                        width: 100%;
+                        left: 0;
+                    }
+                }
+
+                &:hover::after {
+                    animation: bottom 0.3s ease forwards;
                 }
             }
         }
