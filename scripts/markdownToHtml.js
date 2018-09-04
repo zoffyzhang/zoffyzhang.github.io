@@ -12,11 +12,13 @@ let renderer = (function() {
     let toc = []
     renderer.heading = function(text, level, raw) {
         let anchor = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-')
+        anchor = anchor.replace(/\s+/g, '-')
         toc.push({
             anchor: anchor,
             level: level,
             text: text,
         })
+
         return '<h' + level + ' id="' + anchor + '">' + text + '</h' + level + '>\n'
     }
     return renderer
