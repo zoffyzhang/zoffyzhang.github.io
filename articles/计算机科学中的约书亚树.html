@@ -22,9 +22,9 @@
 <p>&lt;!-- /TOC --&gt;
 
 </p>
-<h2 id="mount 命令">mount 命令</h2>
+<h2 id="mount-命令">mount 命令</h2>
 <p>挂载，我第一次看到这个命令的时候非常懵，完全不明白为什要用这个动词，直到我偶然在知乎上找到了答案 —— <a href="https://www.zhihu.com/question/49073893/answer/114986798">Linux 中常用的命令都是哪些单词的缩写？ - 蓬岸 Dr.Quest 的回答 - 知乎</a>，这篇回答图文并茂地描述了 mount 是一个手工添加硬盘的动作，因为老式计算机设备都比较庞大，所以就叫成了 mount，既挂载。</p>
-<h2 id="buffer 与 cache">Buffer 与 Cache</h2>
+<h2 id="buffer-与-cache">Buffer 与 Cache</h2>
 <p>I/O 硬件是计算机速度最慢的元器件之一，为了提高 I/O 效率，人们引入了 Buffer 和 Cache 这两个概念。</p>
 <blockquote>
 <p>简单说，Buffer 的核心作用是用来缓冲，缓和冲击。比如你每秒要写 100 次硬盘，对系统冲击很大，浪费了大量时间在忙着处理开始写和结束写这两件事嘛。用个 Buffer 暂存起来，变成每 10 秒写一次硬盘，对系统的冲击就很小，写入效率高了，日子过得爽了。极大缓和了冲击。</p>
@@ -51,7 +51,7 @@
 <p>* 符号在操作系统上通常含义是通配符(wildcard character)，直接表示任意字符重复 0 或多次，例如<code>ab*</code>可匹配字符串<code>ab</code>与<code>abc123</code>。</p>
 <h2 id="repl">REPL</h2>
 <p>既 Read-Eval-Print Loop，指交互式的编程环境，在该环境中输入命令即可得到结果，最常见的 REPL 就是 Windows cmd。由于 REPL 在编程上拥有无与伦比的便捷性，所以大部分编程语言、操作系统、数据库等都提供了 REPL。</p>
-<h2 id="unix 命令参数 a-z 的共识含义">Unix 命令参数 a-z 的共识含义</h2>
+<h2 id="unix-命令参数-a-z-的共识含义">Unix 命令参数 a-z 的共识含义</h2>
 <p>Unix 社区演变出了一套参数的共识含义，这是一种松散的语义标准，可以让人快速了解大部分 Unix 命令的使用。</p>
 <p>以下内容摘抄自《Unix 编程艺术》：</p>
 <ul>
@@ -110,7 +110,7 @@
 <li>-z
 启动压缩(不带参数)</li>
 </ul>
-<h2 id="pipeline 与 compose">pipeline 与 compose</h2>
+<h2 id="pipeline-与-compose">pipeline 与 compose</h2>
 <p>这两个术语其实没什么关联，但它们的核心思想是一样的。</p>
 <p>pipeline 是 Unix 系统非常成功的发明之一，以&quot;|&quot;符号连接左右两个命令，并将左边命令的输出作为给右边命令的输入。例如：</p>
 <p><code>command1 | command2 | command3</code></p>
@@ -118,7 +118,7 @@
 <p><code>compose( function3, function2, function1)</code></p>
 <p>compose 里的三个参数是三个函数，以从右至左的顺序调用，并且右边函数的输出会作为左边函数的输入。这个顺序看起来很反人类，但其实跟数学函数的计算顺序是一样的：</p>
 <p><code>f(g(h()))</code></p>
-<h2 id="modem 与 gateway 与 router">Modem 与 Gateway 与 Router</h2>
+<h2 id="modem-与-gateway-与-router">Modem 与 Gateway 与 Router</h2>
 <p>Modem：调制解调器，俗称「猫」。你向互联网发送或接收信息时，信息传输方式都是通过波的形式(无论是电话线、光纤还是无线基站，都是以电磁波或光波的形式)，既模拟信号。而计算机能理解的信号是数字信号，所以就需要一个硬件去做模拟信号与数字信息的相互转换工作，这就是 Modem。</p>
 <p>「调制」和「解调」是两个来自电磁波广播技术的名词，如果你想用电磁波发射信号，那么必须用高频电磁波，因为低频波传播距离很短。低频波转换成高频波的过程就称为「调制」，高频波转成低频波则称为「解调」。</p>
 <p>Gateway：网关，指有网关功能的硬件设备，可以管理物理不同网络间的流量。Gateway 其实是一个抽象名词，就像「细菌」是个抽象名词，「葡萄球菌」才是具体的实物。Gateway 可能是路由器、防火墙、服务器或其他设备，只要一个设备连接了两个不同的网络(网络 IP 不同)，就可以把这个设备叫做网关。</p>
@@ -139,7 +139,7 @@
 <li>当你的笔记本、手机等连接 WIFI 时，你买的无线路由器又充当了笔记本、手机的 Default Gateway，并且笔记本、手机又被分配了无线路由器下的内网 IP</li>
 <li>这时候用笔记本 ping 一个公网 IP，这个请求就会从笔记本发送到无线路由器(Default Gateway)，然后发送(到交换机，再发送)到上一级 Default Gateway(一楼的路由器)，经过 Modem 转换成模拟信号，通过光缆到达 ISP 的 Modem，转换成数字信号给 ISP 的 Router，然后又经过多个 Modem 和 Router 中转，最终传送到目标 IP。</li>
 </ol>
-<h2 id="formdata 与 payload">FormData 与 Payload</h2>
+<h2 id="formdata-与-payload">FormData 与 Payload</h2>
 <p>我在浏览器的 HTTP 调试界面中注意到了这两个词，可以对比一下。</p>
 <p>FormData：当 HTTP 请求的 Content-Type 为 application/x-www-form-urlencoded 时，Chrome 和 Firefox 都会把 HTTP request body 称为 FormData。例如下面这个 HTTP 请求的实体部分：</p>
 <pre><code>POST /some-path HTTP/1.1
