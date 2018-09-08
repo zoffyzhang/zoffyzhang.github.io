@@ -34,16 +34,16 @@
 </blockquote>
 <p>所以，最准确的翻译是把 Buffer 翻译成“缓存”，把 Cache 翻译成“快取”。</p>
 <h2 id="域名层级">域名层级</h2>
-<p>我是看了《CSAPP》这本书后才发现，我们中文网络上一些搜索排名靠前的文章，对域名层级的解释跟国际上的不一样！那些被大量阅读的博客文章，不仅会蹦出「三级域名」这样臆造的名词，甚至对「二级域名」的解释也是错的。</p>
+<p>我在看《CSAPP》的时候发现，我们中文网络上一些搜索排名靠前的文章，对域名层级的解释跟国际上的不一样！那些被大量阅读的博客文章，不仅会蹦出「三级域名」这样臆造的名词，甚至有的对「二级域名」的解释也是错的。</p>
 <p>正确的域名层级应该是：</p>
 <p><code>主机名.二级域名.顶级域名.根域名</code></p>
-<p>举个例子，对于<a href="https://en.wikipedia.org/wiki/Domain_name">域名</a>&quot;cdn.mdn.mozilla.net&quot; 来说，其<a href="https://en.wikipedia.org/wiki/Fully_qualified_domain_name">完整域名</a>是&quot;cdn.mdn.mozilla.net.&quot;</p>
+<p>举个例子，对于<a href="https://en.wikipedia.org/wiki/Domain_name">域名</a>&quot;cdn.mdn.mozilla.net&quot; 来说，其<a href="https://en.wikipedia.org/wiki/Fully_qualified_domain_name">完整域名</a>是&quot;cdn.mdn.mozilla.net.&quot;，完整域名后面多了个点。</p>
 <p>这个完整域名从右往左解析，依次是：</p>
 <ul>
 <li>根域名：是一个空字符串，在&quot;net.&quot;后面。由于根域名只有一个，给它命名其实是多余的事情，于是根域名就成了一个空字符串。ps.现代 DNS 可以不需要这个冗余的信息了。</li>
 <li>顶级域名：既&quot;net&quot;这个部分。</li>
-<li>次级域名：既&quot;mozilla&quot;这个部分。</li>
-<li>主机名：既&quot;cdn.mdn&quot;这个部分，也就是&quot;.mozilla&quot;前面的部分。当你买下一个域名的使用权后，你得到的是&quot;次级域名.顶级域名&quot;，主机名可以由你自己配置，普遍的做法是配置成&quot;www&quot;。当网站的业务种类变复杂后，就会增加更多的主机名，让人们更容易区分这个域名下的不同业务，比如前面说到的&quot;cdn.mdn&quot;。</li>
+<li>二级域名：也叫「次级域名」，既&quot;mozilla&quot;这个部分。&quot;mozilla.net&quot;并不能叫做二级域名，而应该叫做域名。</li>
+<li>主机名：既&quot;cdn.mdn&quot;这个部分，也就是&quot;.mozilla&quot;前面的部分。当你买下一个域名的使用权后，你得到的是&quot;二级域名.顶级域名&quot;，主机名可以由你自己配置，普遍的做法是配置成&quot;www&quot;。当网站的业务种类变复杂后，就会增加更多的主机名，让人们更容易区分这个域名下的不同业务，比如前面说到的&quot;cdn.mdn&quot;。</li>
 </ul>
 <p>域名层级跟 DNS 的解析过程紧密相关，但这个过程又需要大量文字才能写完，已经超出了本篇文章的范围。所以最后决定只是单纯地解释术语的意思，涉及 DNS 解析的过程我推荐一篇看过的最详细的文章：<a href="https://www.jianshu.com/p/4394aaf97492">DNS 服务原理详解</a>。</p>
 <h2 id="星符号">星符号</h2>
