@@ -16,7 +16,16 @@
 
 我的想法主要是做一个给自己用的博客系统，所以 GitHub repo 建的名字是 zoffyzhang.github.io，如果要设计成通用性的博客系统，那就需要像 Hexo 那样提供 cli，这样工作量就大大提高了，这并不是我的初衷。
 
-尽管如此，我还是把这个博客系统的一些配置抽了出来，按照下面的步骤，你也可以使用这个项目部署自己的博客。
+尽管如此，我还是把这个博客系统的一些配置抽了出来，你也可以使用这个项目部署自己的博客。
+
+简单地说，你需要 4 步完成这个部署过程：
+
+1. 你需要创建自己的 GitHub Pages repo
+2. 切换到 develop 分支
+3. 把这个项目的源码复制过去
+4. 构建并 push 到自己的远程 repo
+
+如果你对上面的步骤存在疑惑，可以按照下面的hand by hand步骤操作：
 
 1. `git clone https://github.com/zoffyzhang/zoffyzhang.github.io`下载本项目到你的电脑
 2. 在 GitHub 建立你自己的 Github Pages repo，比如说是 xxx.github.io
